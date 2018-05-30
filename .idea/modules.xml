@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JusltTools.iml" filepath="$PROJECT_DIR$/JusltTools.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/juslt/common/common.iml" filepath="$PROJECT_DIR$/juslt/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/juslt/juslt.iml" filepath="$PROJECT_DIR$/juslt/juslt.iml" />
     </modules>
   </component>
 </project>
