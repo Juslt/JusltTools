@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.juslt.juslttools.activity.main.MainActivity">
     <TextView
         android:id="@+id/tv_fragment_manager"
@@ -13,5 +14,14 @@
         android:text="fragment管理"
         android:textColor="@color/color_white"
         android:background="@color/colorPrimary"/>
+    <TextView
+        android:id="@+id/tv_permission"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="6.0权限管理"
+        android:textColor="@color/color_white"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import com.juslt.juslttools.FragmentManagerActivity
 import com.juslt.juslttools.R
+import com.juslt.juslttools.activity.PermissionActivity
 import com.juslt.juslttools.mvp.BaseMvpActivity
-
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseMvpActivity<MainContract.View,MainPresenter>(),MainContract.View {
+class MainActivity : BaseMvpActivity<MainContract.View, MainPresenter>(), MainContract.View {
     override fun updateView() {
         Log.e("=====","更新view")
     }
@@ -20,11 +20,18 @@ class MainActivity : BaseMvpActivity<MainContract.View,MainPresenter>(),MainCont
         tv_fragment_manager.setOnClickListener {
             startActivity(Intent(this, FragmentManagerActivity::class.java))
         }
+        tv_permission.setOnClickListener {
+            startActivity(Intent(this,PermissionActivity::class.java))
+        }
         Log.e("===", "MainActivity----------onCreate")
         mPresenter.loadData()
     }
 
     override var mPresenter = MainPresenter()
+
+
+
+
 
     override fun onStart() {
         super.onStart()

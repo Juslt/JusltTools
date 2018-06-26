@@ -4,13 +4,11 @@ package com.juslt.juslttools.fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.juslt.juslttools.FragmentManagerActivity
-
 import com.juslt.juslttools.R
 import kotlinx.android.synthetic.main.fragment_one.*
 
@@ -21,8 +19,7 @@ import kotlinx.android.synthetic.main.fragment_one.*
 class FirstFragment : Fragment() {
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.e("===","firstFragment----------onCreateView")
         return inflater!!.inflate(R.layout.fragment_one, container, false)
     }
