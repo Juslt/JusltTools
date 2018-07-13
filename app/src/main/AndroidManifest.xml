@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FragmentManagerActivity" />
-        <activity android:name=".activity.PermissionActivity"></activity>
+        <activity android:name=".activity.PermissionActivity" />
+        <activity android:name=".activity.ContractSideBarActivity"></activity>
     </application>
 
 </manifest>

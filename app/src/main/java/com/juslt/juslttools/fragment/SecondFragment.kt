@@ -21,11 +21,11 @@ import kotlinx.android.synthetic.main.fragment_second.*
 class SecondFragment : Fragment() {
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        Log.e("===","SecondFragment----------onCreateView")
-        return inflater!!.inflate(R.layout.fragment_second, container, false)
-    }
+//    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+//                              savedInstanceState: Bundle?): View? {
+//        Log.e("===","SecondFragment----------onCreateView")
+//        return inflater!!.inflate(R.layout.fragment_second, container, false)
+//    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
