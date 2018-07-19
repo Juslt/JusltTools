@@ -3,9 +3,9 @@ package com.juslt.juslttools.activity
 import android.Manifest
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.juslt.juslttools.R
+import com.juslt.juslttools.activity.main.BaseActivity
 import kotlinx.android.synthetic.main.activity_permission.*
 import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnNeverAskAgain
@@ -13,7 +13,7 @@ import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
 
 @RuntimePermissions
-class PermissionActivity : AppCompatActivity() {
+class PermissionActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

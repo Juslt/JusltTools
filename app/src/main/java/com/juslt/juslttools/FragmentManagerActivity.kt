@@ -1,12 +1,11 @@
 package com.juslt.juslttools
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.juslt.juslttools.fragment.FirstFragment
+import com.juslt.juslttools.activity.main.BaseActivity
 import com.juslt.juslttools.fragment.SecondFragment
 
-class FragmentManagerActivity : AppCompatActivity() {
+class FragmentManagerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
