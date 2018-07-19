@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.juslt.juslttools.FragmentManagerActivity
 import com.juslt.juslttools.R
+import com.juslt.juslttools.activity.ContractSideBarActivity
 import com.juslt.juslttools.activity.PermissionActivity
 import com.juslt.juslttools.mvp.BaseMvpActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +23,9 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainPresenter>(), MainCo
         }
         tv_permission.setOnClickListener {
             startActivity(Intent(this,PermissionActivity::class.java))
+        }
+        tv_side_bar.setOnClickListener {
+            startActivity(Intent(this,ContractSideBarActivity::class.java))
         }
         Log.e("===", "MainActivity----------onCreate")
         mPresenter.loadData()
