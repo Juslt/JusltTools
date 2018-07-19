@@ -10,10 +10,11 @@ import android.support.annotation.RequiresApi
 import android.webkit.*
 import android.widget.Toast
 import com.juslt.juslttools.R
+import com.juslt.juslttools.activity.main.BaseActivity
 import com.juslt.juslttools.activity.main.MainActivity
 import kotlinx.android.synthetic.main.activity_java_and_js.*
 
-class JavaAndJsActivity : AppCompatActivity() {
+class JavaAndJsActivity : BaseActivity() {
 
 
 

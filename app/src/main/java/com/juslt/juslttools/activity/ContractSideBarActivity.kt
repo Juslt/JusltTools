@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.juslt.common.rv.UIEventInterface
 import com.juslt.juslttools.R
+import com.juslt.juslttools.activity.main.BaseActivity
 import com.juslt.juslttools.adapter.CountryAdapter
 import com.juslt.juslttools.model.Country
 import com.juslt.juslttools.utils.HanziToPinyin
@@ -18,7 +19,7 @@ import java.util.*
 import java.util.regex.Pattern
 import kotlin.Comparator
 
-class ContractSideBarActivity : AppCompatActivity() {
+class ContractSideBarActivity : BaseActivity() {
     val list = ArrayList<Country>()
     var adapter: CountryAdapter? = null
     lateinit var lineraLayoutManager: LinearLayoutManager
