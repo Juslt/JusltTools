@@ -2,6 +2,7 @@ package com.juslt.common.widget
 
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.juslt.common.R
+import com.juslt.common.utils.SizeUtil
+import com.juslt.common.utils.SysStatusBarUtil
 import org.jetbrains.anko.find
 
 /**
@@ -25,7 +28,8 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
 
     private val llRightContainer by lazy { find<LinearLayout>(R.id.ll_right) }
     init {
-        LayoutInflater.from(context).inflate(R.layout.v_toolbar, this)
+         LayoutInflater.from(context).inflate(R.layout.v_toolbar, this)
+
 
         val typeArray = context.obtainStyledAttributes(attrs, R.styleable.CustomToolBar)
         val titleNameStyle = typeArray.getString(R.styleable.CustomToolBar_title_name)
@@ -38,6 +42,20 @@ class CustomToolBar @JvmOverloads constructor(context: Context, attrs: Attribute
         val isShowDividerStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_divider,false)
         val backgroundStyle = typeArray.getColor(R.styleable.CustomToolBar_background_color,Color.parseColor("#ffffff"))
         val isShowBackIconStyle = typeArray.getBoolean(R.styleable.CustomToolBar_is_show_back_icon,true)
+
+        val isDarkBar = typeArray.getBoolean(R.styleable.CustomToolBar_is_dark_bar,false)
+        /***/
+        val toolbar = this.find<LinearLayout>(R.id.toolbar)
+        var compatPaddingTop =0
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.KITKAT){
+            compatPaddingTop = SysStatusBarUtil.getStatusBarHeight(context)
+        }
+        if(isDarkBar&&Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
+            compatPaddingTop =0
+        }
+        toolbar.setPadding(paddingLeft,paddingTop+compatPaddingTop,paddingRight,paddingBottom)
+
+
         typeArray.recycle()
 
         tvTitle.text = titleNameStyle

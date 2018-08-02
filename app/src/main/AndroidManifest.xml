@@ -31,6 +31,8 @@
         <activity android:name=".activity.PermissionActivity" />
         <activity android:name=".activity.ContractSideBarActivity" />
         <activity android:name=".activity.PhotoPickerActivity"></activity>
+        <activity android:name=".activity.ContractSideBarActivity" />
+        <activity android:name=".activity.JavaAndJsActivity"></activity>
     </application>
 
 </manifest>
