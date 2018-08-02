@@ -29,7 +29,8 @@
         </activity>
         <activity android:name=".FragmentManagerActivity" />
         <activity android:name=".activity.PermissionActivity" />
-        <activity android:name=".activity.ContractSideBarActivity"></activity>
+        <activity android:name=".activity.ContractSideBarActivity" />
+        <activity android:name=".activity.PhotoPickerActivity"></activity>
     </application>
 
 </manifest>
