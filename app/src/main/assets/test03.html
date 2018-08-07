@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/shnagjixiangqing.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css" />
+		<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/shangjixiangqing.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="top">
+			<div id="top_box">
+				<div id="top_ban">
+								<a href="http://static.kuaifuba.cn/app/fullpage/fullpage.html">
+									<div class="li_chi li_chiy">
+									</div>
+								</a>
+								<a href="#" style="background: #fff;">
+									<div class="li_chi li_chie">
+									</div>
+								</a>
+								<a href="#">
+									<div class="li_chi li_chis">
+									</div>
+								</a>
+				</div>
+				<div id="top_bantwo">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<a href="http://static.kuaifuba.cn/app/blitz/shangjixiangqing.html">
+									<div class="li_chi li_chiy">
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="#">
+									<div class="li_chi li_chie">
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<a href="#">
+									<div class="li_chi li_chis">
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="top_r">
+				<div id="top_rfo" class="top_rtwo">
+				</div>
+				<div id="top_rsp" class="left">
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<div id="box_one">
+			<div id="one_top">
+				<img src="img/sdbxq_img_text.png"/>
+			</div>
+			<div id="one_btn" class="butt" onclick="getAppInfo()">
+				<a href="javascript:;">签约产品</a>
+			</div>
+			<div id="one_link" class="linkk">
+				<a href="#"></a>
+			</div>
+		</div>
+		<div id="box_two">
+			<div class="math_top">
+				<img src="img/sdbxq_text_icon_bq.png"/>
+				<h2>产品优点</h2>
+				<img src="img/sdbxq_text_icon_bq.png"/>
+			</div>
+			<div id="two_con" class="tutu">
+				<img src="img/sdbxq_main_img1.png"/>
+			</div>
+			<div id="two_cono" class="tutu">
+				<img src="img/sdbxq_main_img2.png"/>
+			</div>
+			<div id="two_cont" class="tutu">
+				<img src="img/sdbxq_main_img3.png" />
+			</div>
+			<div id="two_btn" class="butt" onclick="getAppInfo()">
+				<a href="javascript:;">签约产品</a>
+			</div>
+			<div id="two_link" class="linkk">
+				<a href="#"></a>
+			</div>
+		</div>
+		<div id="box_three">
+			<div class="math_top">
+				<img src="img/sdbxq_text_icon_bq.png"/>
+				<h2>政策规划</h2>
+				<img src="img/sdbxq_text_icon_bq.png"/>
+			</div>
+			<div id="three_con">
+				<img src="img/sdb_main_zcb1.png"/>
+			</div>
+			<div id="three_btn" class="butt" style="padding-top: 0.3rem;" onclick="getAppInfo()">
+				<a href="href="javascript:;"">签约产品</a>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var mySwiper = new Swiper('.swiper-container', {
+            slidesPerView : 3,
+            slidesPerGroup : 3,
+            slidesOffsetBefore : 100,
+		})
+		$("#top_rfo").click(function() {
+			$(this).toggleClass("top_rone");
+			$("#top_ban").hide()
+			$("#top_bantwo").toggleClass("yes")
+			$("#top_rsp").toggleClass("leftl")
+		})
+		function getAppInfo(){
+    var valueid={id:"2001"}
+    console.log(valueid.id); 
+     var u = navigator.userAgent, app = navigator.appVersion;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; 
+    var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); 
+    if (isAndroid) {
+         // Android
+       android.idname(value.id);
+    }
+    if (isIOS) {
+        // ios
+       window.webkit.messageHandlers.smallBazaarShareContent.postMessage(
+         valueid);
+    }          
+  }
+	</script>
+</html>

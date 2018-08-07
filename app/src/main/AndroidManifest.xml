@@ -20,6 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity android:name=".activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +40,11 @@
         <activity android:name=".FragmentManagerActivity" />
         <activity android:name=".activity.PermissionActivity" />
         <activity android:name=".activity.ContractSideBarActivity" />
-        <activity android:name=".activity.PhotoPickerActivity"></activity>
+        <activity android:name=".activity.PhotoPickerActivity" />
         <activity android:name=".activity.ContractSideBarActivity" />
-        <activity android:name=".activity.JavaAndJsActivity"></activity>
+        <activity android:name=".activity.JavaAndJsActivity" />
+        <activity android:name=".activity.TabLayoutActivity" />
+        <activity android:name=".activity.WordFilterActivity"></activity>
     </application>
 
 </manifest>

@@ -6,12 +6,24 @@
     function sum(a,b){
     return a+b;
     }
-     function s(){
-    var result =window.android.back();
+
+    function s(){
+    var u = navigator.userAgent,app=navigator.appVersion;
+    var isAndroid = u.indexOf('Android')>-1 || u.indexOf('Linux')>-1;
+    if(isAndroid){
+            <!--var result =android.back(100);-->
+                android.idname(10000);
     document.getElementById("p").innerHTML=result;
     }
+
+    }
+
     function show(){
     document.getElementById("p").innerHTML="hello h5";
+    }
+
+    function javaCallJs(arg){
+       document.getElementById("p").innerHTML=("产品状态："+arg);
     }
 
 
@@ -21,4 +33,5 @@
 <button onclick="s()">调用本地方法</button>
 <a href="file:///android_asset/test2.html">点击</a>
 <p id="p"></p>
+<p id="content"></p>
 </body>

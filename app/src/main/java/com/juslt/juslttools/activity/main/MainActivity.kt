@@ -2,11 +2,11 @@ package com.juslt.juslttools.activity.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.util.Log
 import com.juslt.juslttools.FragmentManagerActivity
 import com.juslt.juslttools.R
-import com.juslt.juslttools.activity.ContractSideBarActivity
-import com.juslt.juslttools.activity.PermissionActivity
+import com.juslt.juslttools.activity.*
 import com.juslt.juslttools.mvp.BaseMvpActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,10 +28,16 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainPresenter>(), MainCo
             startActivity(Intent(this,ContractSideBarActivity::class.java))
         }
         tv_matisse.setOnClickListener {
-            startActivity(Intent(this,PhotoPickerActivity::class.java))
+            startActivity(Intent(this, PhotoPickerActivity::class.java))
         }
         tv_java_js.setOnClickListener {
-            startActivity(Intent(this,JavaAndJsActivity::class.java))
+            startActivity(Intent(this, JavaAndJsActivity::class.java))
+        }
+        tv_tab_layout.setOnClickListener {
+            startActivity(Intent(this,TabLayoutActivity::class.java))
+        }
+        tv_word_filter.setOnClickListener {
+            startActivity(Intent(this,WordFilterActivity::class.java))
         }
 
 

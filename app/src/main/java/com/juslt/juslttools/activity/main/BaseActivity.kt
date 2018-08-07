@@ -27,7 +27,7 @@ open class BaseActivity : AppCompatActivity() {
                 setStatusBarFontIconDark(true)
             }else{
                 if(statusBarColor ==Color.WHITE){
-                    color = this.resources.getColor(R.color.gray)
+//                    color = this.resources.getColor(R.color.gray)
                 }
             }
         }else{
