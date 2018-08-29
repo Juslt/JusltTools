@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout
 import android.util.Log
 import com.juslt.juslttools.FragmentManagerActivity
 import com.juslt.juslttools.R
+import com.juslt.juslttools.WebViewActivity
 import com.juslt.juslttools.activity.*
 import com.juslt.juslttools.mvp.BaseMvpActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -39,7 +40,9 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainPresenter>(), MainCo
         tv_word_filter.setOnClickListener {
             startActivity(Intent(this,WordFilterActivity::class.java))
         }
-
+        tv_add_text_in_web.setOnClickListener {
+            startActivity(Intent(this,WebViewActivity::class.java))
+        }
 
 
         Log.e("===", "MainActivity----------onCreate")

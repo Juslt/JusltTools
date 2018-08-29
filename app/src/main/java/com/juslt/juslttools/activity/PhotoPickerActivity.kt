@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
@@ -13,9 +12,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.content.FileProvider
-import com.juslt.common.utils.BitmapUtil
-import com.juslt.common.utils.ZipUtils
 import com.juslt.juslttools.R
+import com.juslt.juslttools.utils.CropUtil
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
@@ -27,32 +25,60 @@ import java.io.File
 
 @RuntimePermissions
 class PhotoPickerActivity : AppCompatActivity() {
-    val TAKE_PHOTO=200
-    val CROP_IMAGE=300
+    val REQUEST_CAMERA = 200
+    val REQUEST_PHOTO_ALBUM = 400
+    val CROP_IMAGE = 300
 
-    val string_path = Environment.getExternalStorageDirectory().absolutePath+File.separator+"temp_image"
-    val photoPath = string_path  + "/temp.jpg"
-    lateinit var photoFile:File
+    val string_path = Environment.getExternalStorageDirectory().absolutePath + File.separator + "temp_image"
+    val photoPath = string_path + "/temp.jpg"
+    var targetUri:Uri?=null
+    lateinit var cropFile:File
+    lateinit var photoFile: File
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_picker)
+
+        val string_path = Environment.getExternalStorageDirectory().absolutePath+ File.separator + "temp_image"
+        val filePath = File(string_path)
+        if (!filePath.exists()) {
+            filePath.mkdir()
+        }
+        cropFile= File(string_path+"/temp_crop.img")
+
+
+
+        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+            //创建文件
+            val filePath = File(string_path)
+            if (!filePath.exists()) {
+                filePath.mkdir()
+            }
+            photoFile = File(photoPath)
+        }
         btn_open_photo.setOnClickListener {
-        openPhotoWithPermissionCheck()
+            openPhotoWithPermissionCheck()
         }
         btn_open_camera.setOnClickListener {
             //调用系统相机拍照，回调data显示图片缩略图
 //            val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //            startActivityForResult(captureIntent,TAKE_PHOTO)
 
-
-            val filePath = File(string_path)
-            if(!filePath.exists()){
-                filePath.mkdir()
+            //intent
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
+                val uri = FileProvider.getUriForFile(this, application.packageName + ".provider", photoFile) //Android7.0以上获取Uri
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            } else {
+                val uri = Uri.fromFile(photoFile)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             }
-            val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-             photoFile = File(photoPath)
-            captureIntent.putExtra(MediaStore.EXTRA_OUTPUT,FileProvider.getUriForFile(this,application.packageName +".provider",photoFile))
-            startActivityForResult(captureIntent,TAKE_PHOTO)
+            startActivityForResult(intent, REQUEST_CAMERA)
+        }
+
+        btn_open_photo_album.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, null)
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
+            startActivityForResult(intent, REQUEST_PHOTO_ALBUM)
         }
     }
 
@@ -69,61 +95,58 @@ class PhotoPickerActivity : AppCompatActivity() {
     }
 
     @OnPermissionDenied(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    fun onStorageDenied(){
+    fun onStorageDenied() {
 
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        onRequestPermissionsResult(requestCode,grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
     }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode== Activity.RESULT_OK && requestCode==TAKE_PHOTO){
-
-//            val bitmap = data!!.extras.get("data") as Bitmap
-//            iv_photo.setImageBitmap(bitmap)
-
-            //data为空的， 这时使用自定义的路径来获取图片资源
-//            val photoPath = ZipUtils.compImageFile(photoPath)
-//            val bitmap = BitmapFactory.decodeFile(photoPath)
-//            iv_photo.setImageBitmap(bitmap)
-            ZipUtils.compImageFile(photoPath)
-            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
-                val contentUri = FileProvider.getUriForFile(this,application.packageName +".provider",photoFile)
-                cropImage(contentUri)
-            }else{
-                val contentUri = Uri.fromFile(photoFile)
-                cropImage(contentUri)
-            }
-
+        if(resultCode!=Activity.RESULT_OK){
+            return
         }
-        if(resultCode== Activity.RESULT_OK&&requestCode==CROP_IMAGE){
-//            val bitmap = BitmapFactory.decodeFile(photoPath)
-            val bundle = intent.extras
-            if(bundle!=null){
-                val bitmap = bundle.getParcelable<Bitmap>("data")
+
+        when(requestCode){
+            100->{
+
+            }
+            REQUEST_CAMERA->{
+                //            ZipUtils.compImageFile(photoPath)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    val contentUri = FileProvider.getUriForFile(this, application.packageName + ".provider", photoFile)
+                    cropImage(contentUri)
+                } else {
+                    val contentUri = Uri.fromFile(photoFile)
+                    cropImage(contentUri)
+                }
+            }
+            REQUEST_PHOTO_ALBUM->{
+                //            photoFile = File(data!!.data)
+//            cropImage(FileProvider.getUriForFile(this, application.packageName + ".provider", photoFile))
+                cropImage(data!!.data)
+            }
+            CROP_IMAGE->{
+                val bitmap = BitmapFactory.decodeFile(cropFile.path)
                 iv_photo.setImageBitmap(bitmap)
             }
-
         }
     }
 
-    private fun cropImage(uri:Uri) {
-        val intent = Intent("com.android.camera.action.CROP")
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-        intent.setDataAndType(uri,"image/*")
-        intent.putExtra("crop","true")
-        intent.putExtra("aspectX",1)
-        intent.putExtra("aspectY",1)
+    private fun cropImage(uri: Uri) {
 
-        intent.putExtra("outputX",500)
-        intent.putExtra("outputY",500)
-        intent.putExtra("return-data",true)
-        startActivityForResult(intent,CROP_IMAGE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            targetUri = FileProvider.getUriForFile(this, application.packageName + ".provider", cropFile)
+        } else {
+            targetUri = Uri.fromFile(cropFile)
+        }
+        startActivityForResult(CropUtil.cropImage(uri,targetUri), CROP_IMAGE)
     }
+
+
 }

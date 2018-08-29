@@ -44,7 +44,8 @@
         <activity android:name=".activity.ContractSideBarActivity" />
         <activity android:name=".activity.JavaAndJsActivity" />
         <activity android:name=".activity.TabLayoutActivity" />
-        <activity android:name=".activity.WordFilterActivity"></activity>
+        <activity android:name=".activity.WordFilterActivity" />
+        <activity android:name=".WebViewActivity"></activity>
     </application>
 
 </manifest>
